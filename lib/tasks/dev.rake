@@ -15,16 +15,16 @@ task({ :sample_data => :environment }) do
   end
 
   
+  usernames = ["bob", "alice", "carol", "dave", "eve"]
 
-  5.times do
-    username = Faker::Name.first_name
-
+  usernames.each do |username|
     user = User.new
     user.email = "#{username}@example.com"
     user.password = "password"
 
     user.save
   end
+
 
   5.times do
     board = Board.new

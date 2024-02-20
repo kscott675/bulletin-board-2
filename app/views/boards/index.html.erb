@@ -8,7 +8,8 @@
 
 <hr>
 
-<div>
+<% if current_user != nil %>
+  <div>
   <div>
     <h2>
       Add a new board
@@ -29,15 +30,23 @@
     </form>
   </div>
 </div>
+<% else %>
+  <p>You must <a href="users/sign_in"> sign in </a> to create a board.</p>
+<% end %>
+
 
 <hr>
 
 <ul>
   <% @list_of_boards.each do |a_board| %>
+    <% matching_user = User.where(id: a_board.user_id).at(0) %>
     <li>
       <a href="/boards/<%= a_board.id %>">
         <%= a_board.name %>
       </a>
+      <div>
+      <%= matching_user.email %>
+      </div>
     </li>
   <% end %>
 </ul>
