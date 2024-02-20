@@ -13,22 +13,31 @@
   <body>
     <nav>
       <a href="/">Bulletin Board</a>
-    </nav>
 
-    <hr>
-
-    <% if notice.present? %>
-      <div style="color: green">
-        <%= notice %>
-      </div>
+      <% if current_user != nil %>
+      <a href="/users/sign_out">Sign Out</a>
+      <a href="/users/edit">Edit profile</a>
+    <% else %>
+      <a href="/users/sign_up">Sign Up</a>
+      <a href="/users/sign_in">Sign In</a>
     <% end %>
 
-    <% if alert.present? %>
-      <div style="color: red">
-        <%= alert %>
-      </div>
-    <% end %>
+  </nav>
 
-    <%= yield %>
-  </body>
+  <hr>
+
+  <% if notice.present? %>
+    <div style="color: green">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert.present? %>
+    <div style="color: red">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <%= yield %>
+</body>
 </html>
